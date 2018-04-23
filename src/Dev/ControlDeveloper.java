@@ -80,8 +80,8 @@ public class ControlDeveloper {
 	
 	//System.out.println(commandList.get(1));
 
-	commandList.remove(2);
-	//commandList.moveUp(4);
+	//commandList.remove(2);
+	commandList.moveUp(4);
 	//commandList.moveDown(1);
 
 	System.out.println("Ergebnisse aus verketteten Liste:");
@@ -90,7 +90,7 @@ public class ControlDeveloper {
 	System.out.println(commandList.get(3));
 	System.out.println(commandList.get(4));
 	System.out.println(commandList.get(5));
-	//System.out.println(commandList.get(6));
+	System.out.println(commandList.get(6));
 
 	}
 	

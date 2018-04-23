@@ -20,9 +20,7 @@ public class CommandList {
 	 */
 	public boolean add(ICommand command) {
 		if (root == null) {
-			Element element = root;
 			root = new Element(command);
-			root.next = element;
 			return true;
 		}
 		
