@@ -1,9 +1,5 @@
 package Dev;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 
@@ -28,12 +24,12 @@ public class ControlDeveloper {
 		ControlDeveloper cD = new ControlDeveloper();
 
 		// Aufgabe 1
-		System.out.println(name);
-		System.out.println(cD.getName());
+		//System.out.println(name);
+		//System.out.println(cD.getName());
 
 		// Aufgabe 3
 		cD.testCommands();
-		cD.printCommands();
+		//cD.printCommands();
 
 		CommandList commandList = new CommandList();
 
@@ -42,19 +38,19 @@ public class ControlDeveloper {
 			commandList.add(cD.commands[i]);
 
 		// Test der Funktion exist
-		if (commandList.exist(cD.commands[1]))
+		/*if (commandList.exist(cD.commands[1]))
 			System.out.println("Obj vorhanden");
 		else
 			System.out.println("Obj nicht vorhanden");
-
+		*/
 		
 		// Testen der Funktion moveUp/moveDown
 		// commandList.moveUp(3);
-		if(!commandList.moveDown(2))
+		/*if(!commandList.moveDown(2))
 			System.out.println("Der Vorgang ist gescheitert");
 		else
 			System.out.println("Der Vorgang war erfolgreich");
-		
+		*/
 
 		
 		// Ausgeben der verketteten Liste
@@ -63,13 +59,20 @@ public class ControlDeveloper {
 			System.out.println(commandList.get(i));
 		
 		
-		System.out.println("TEST");
-		CommandType ct1 = CommandType.createClass("Direction");
-		CommandType ct2 = CommandType.createClass("Gear");
-		CommandType ct3 = CommandType.createClass("Pause");
+		//Aufgabenblatt 2
+		System.out.println("\nControl Process:");
+		CommandList controlProcess = ControlModel.getInstance().getControlProcess();
 		
-		Direction d1 = (Direction) ct1.createInstance();
-		System.out.println(d1);
+		for (int i = 0; i < 3; i++)
+			controlProcess.add(cD.commands[i]);
+		
+		Gear newCommand = (Gear) ControlModel.getInstance().getCommandTypes("Gear").createInstance();
+		newCommand.setDuration(2);
+		controlProcess.add(newCommand);
+	
+	
+		//ControlModel.getInstance().save(ControlModel.file, false);
+		ControlModel.getInstance().load(ControlModel.file);
 		
 	}
 
@@ -104,10 +107,10 @@ public class ControlDeveloper {
 		Pause p2 = new Pause((int) (Math.random() * 51 - 0));
 
 		commands[0] = d1;
-		commands[1] = d2;
-		commands[2] = g1;
-		commands[3] = g2;
-		commands[4] = p1;
+		commands[1] = g1;
+		commands[2] = p1;
+		commands[3] = d2;
+		commands[4] = g2;
 		commands[5] = p2;
 
 	}

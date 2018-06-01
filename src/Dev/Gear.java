@@ -99,7 +99,7 @@ public class Gear extends Command implements IGear {
 
 	@Override
 	public String toString() {
-		return "Der Wagen fährt mit " + speed + " % für " + duration + " Sekunden";
+		return "Gear" + SEPERATOR + speed + SEPERATOR  + duration;
 	}
 
 }

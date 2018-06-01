@@ -292,5 +292,9 @@ public class CommandList {
 		return false;
 
 	}
+	
+	public int count() {
+		return elementCounter;
+	}
 
 }

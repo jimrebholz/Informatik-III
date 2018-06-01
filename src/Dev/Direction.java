@@ -66,7 +66,7 @@ public class Direction extends Command implements IDirection {
 
 	@Override
 	public String toString() {
-		return "Rotation des Wagens um " + degree + " Grad";
+		return "Direction" + SEPERATOR + degree;
 	}
 
 }

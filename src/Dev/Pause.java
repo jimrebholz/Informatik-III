@@ -63,7 +63,7 @@ public class Pause extends Command implements IPause {
 
 	@Override
 	public String toString() {
-		return "Der Wagen wartet " + duration + " Sekunden";
+		return "Pause" + SEPERATOR  + duration;
 	}
 
 }
