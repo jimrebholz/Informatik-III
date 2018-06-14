@@ -1,5 +1,7 @@
 package Dev;
 
+import javax.swing.JFrame;
+
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 
@@ -13,23 +15,17 @@ import hsrt.mec.controldeveloper.core.com.command.ICommand;
  * @version 1.0
  */
 
+@SuppressWarnings("unused")
 public class ControlDeveloper {
 
 	private static String name = "Control-Developer";
 	private ICommand[] commands = new ICommand[20];
-
 	
 	public static void main(String[] args){
 
 		ControlDeveloper cD = new ControlDeveloper();
 
-		// Aufgabe 1
-		//System.out.println(name);
-		//System.out.println(cD.getName());
-
-		// Aufgabe 3
 		cD.testCommands();
-		//cD.printCommands();
 
 		CommandList commandList = new CommandList();
 
@@ -37,22 +33,6 @@ public class ControlDeveloper {
 		for (int i = 0; i < 6; i++)
 			commandList.add(cD.commands[i]);
 
-		// Test der Funktion exist
-		/*if (commandList.exist(cD.commands[1]))
-			System.out.println("Obj vorhanden");
-		else
-			System.out.println("Obj nicht vorhanden");
-		*/
-		
-		// Testen der Funktion moveUp/moveDown
-		// commandList.moveUp(3);
-		/*if(!commandList.moveDown(2))
-			System.out.println("Der Vorgang ist gescheitert");
-		else
-			System.out.println("Der Vorgang war erfolgreich");
-		*/
-
-		
 		// Ausgeben der verketteten Liste
 		System.out.println("Ergebnis der Verketteten Liste");
 		for (int i = 1; i < 7; i++)
@@ -72,7 +52,17 @@ public class ControlDeveloper {
 	
 	
 		//ControlModel.getInstance().save(ControlModel.file, false);
-		ControlModel.getInstance().load(ControlModel.file);
+		//ControlModel.getInstance().load(ControlModel.file);
+		
+		///////////////////////////////////////////////////////////////////////////////
+
+		GUI_ControllerView cV = new GUI_ControllerView(ControlModel.getInstance());
+		cV.pack();
+		cV.setVisible(true);
+	
+		
+		
+		
 		
 	}
 

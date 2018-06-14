@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.Vector;
 
 import hsrt.mec.controldeveloper.io.Console;
-import hsrt.mec.controldeveloper.io.IOType;
-import hsrt.mec.controldeveloper.io.ObjectFile;
 import hsrt.mec.controldeveloper.io.TextFile;
 
 public class ControlModel {
@@ -37,6 +35,19 @@ public class ControlModel {
 		else 
 			return null;
 	}
+	
+public String[] getCommandTypes() {
+		
+		String[] str = new String[3];
+		str[0] = "Gear";
+		str[1] = "Pause";
+		str[2] = "Direction";
+	
+	
+		return str ;
+		
+	}
+	
 	
 	public static ControlModel getInstance() {
 		
