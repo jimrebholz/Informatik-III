@@ -1,15 +1,20 @@
 package Dev;
 
-import java.util.Vector;
-
+/**
+ * CustomTableModel
+ * Eigenes TableModel nach der das Table aufgebaut wird
+ *  
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class CustomTableModel extends AbstractTableModel{
 	
 	static final String[] columnHeader = {"No.", "Command", "Configuration"};
-	private Vector<Vector<String>> rows= new Vector<Vector<String>>();
-	private int rowCount = 0;
-
+	
 	@Override
 	public int getRowCount() {
 	
@@ -61,10 +66,18 @@ public class CustomTableModel extends AbstractTableModel{
 
 	}
 	
+	/**
+	 * Ausgabe des Headers 
+	 * @return columnHeader (3 Spalten mit No./Command/Config)
+	 */
 	public String getColumnName(int column) {
 		return columnHeader[column];
 	}
 	
+	/**
+	 * Erzeugen einer neuen Zeile, über die value, wird dabei der entsprechende Command eingefügt und in der List erzeugt
+	 * @param value (Direction, Gear, Pause)
+	 */
 	public void addRow(String value){
 
 		CommandList controlProcess = ControlModel.getInstance().getControlProcess();
@@ -72,6 +85,10 @@ public class CustomTableModel extends AbstractTableModel{
 	    fireTableDataChanged();
 	}
 	
+	/**
+	 * Löschen einer Zeile über den Zeilenindex
+	 * @param row (Zeilenindex + 1)
+	 */
 	public void delRow(int row){
 		
 		CommandList controlProcess = ControlModel.getInstance().getControlProcess();
@@ -79,6 +96,10 @@ public class CustomTableModel extends AbstractTableModel{
 	    fireTableDataChanged();
 	}
 	
+	/**
+	 * Hochschieben einer Zeile über den Zeilenindex
+	 * @param row (Zeilenindex + 1)
+	 */
 	public void moveUpRow(int row) {
 	
 		CommandList controlProcess = ControlModel.getInstance().getControlProcess();
@@ -86,6 +107,10 @@ public class CustomTableModel extends AbstractTableModel{
 	    fireTableDataChanged();
 	}
 	
+	/**
+	 * Runterschieben einer Zeile über den Zeilenindex
+	 * @param row (Zeilenindex + 1)
+	 */
 	public void moveDownRow(int row) {
 		
 		CommandList controlProcess = ControlModel.getInstance().getControlProcess();

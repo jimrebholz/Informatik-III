@@ -8,10 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Vector;
 
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,22 +17,42 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
+/**
+ * GUI_Types
+ * Erzeugen der Liste mit den CommandTypes.
+ * Über die Auswahl eines Commands wird anschließend ein Dialog erzeugt
+ * Die Auswahl erfolgt über den Button Add oder einen Doppelklick auf das entsprechende Element
+ * 
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
+@SuppressWarnings({ "serial", "rawtypes" })
 public class GUI_Types extends JList {
 
-	private ControlModel cM = null;
+
 	private JScrollPane sP = new JScrollPane();
 	private JButton add = new JButton("Add");
 	private JList<String> list = new JList<String>();
 
-	
+	/**
+	 * Konstruktor
+	 * @param cM
+	 * @param frame
+	 * @param cTM
+	 */
 	public GUI_Types(ControlModel cM, JFrame frame, CustomTableModel cTM) {
 		
 		createTypes(cM, frame, cTM);
 	}
 	
+	/**
+	 * Erzeugen der TypesListe
+	 * @param cM
+	 * @param frame
+	 * @param cTM
+	 */
 	private void createTypes(ControlModel cM, JFrame frame, CustomTableModel cTM) {
-		
-		this.cM = cM;
 		
 		JLabel label = new JLabel("Types", JLabel.CENTER);
 		JViewport header = new JViewport();
@@ -62,11 +79,8 @@ public class GUI_Types extends JList {
 					
 					cTM.addRow(list.getSelectedValue());
 					new GUI_Dialogue(list.getSelectedValue(), ControlModel.getInstance().getControlProcess().count(), 0);
-					System.out.println(list.getSelectedIndex()+1);
 					add.setEnabled(false);
-					
-					
-					
+		
 				}
 
 			}

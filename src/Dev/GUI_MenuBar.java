@@ -1,11 +1,14 @@
 package Dev;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URI;
 import java.net.UnknownHostException;
 
 import javax.swing.JFileChooser;
@@ -13,26 +16,39 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.event.MenuListener;
-import javax.swing.filechooser.FileFilter;
-
-import com.sun.glass.ui.MenuItem;
 
 import hsrt.mec.controldeveloper.core.com.WiFiCard;
 import hsrt.mec.controldeveloper.core.com.WiFiCardHandler;
 import hsrt.mec.controldeveloper.io.WiFi;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 
+
+/**
+ * GUI_MenuBar
+ * Erzeugen der MenuBar mit den 3 Reitern File, Config und Help mit den jeweiligen Untermenüs
+ *  
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
+@SuppressWarnings("serial")
 public class GUI_MenuBar extends JMenuBar{
 	
+	/**
+	 * Konstruktor
+	 * @param frame (Frame)
+	 * @param cTM (CustomTableModel)
+	 */
 	public GUI_MenuBar(JFrame frame, CustomTableModel cTM) {
 		
 		createMenuBar(frame, cTM);
 		
 	}
 	
+	/**
+	 * Erzeugen der MenuBar
+	 * @param frame (Frame)
+	 * @param cTM (CustomTableModel)
+	 */
 	private void createMenuBar(JFrame frame, CustomTableModel cTM) {
 		
 		//Erstellen einer Menüleiste
@@ -51,6 +67,10 @@ public class GUI_MenuBar extends JMenuBar{
 		JMenuItem save = new JMenuItem("Save");
 		
 		JMenuItem wifi = new JMenuItem("Connect to Wifi");
+		
+		JMenuItem helpMe = new JMenuItem("Give me some help");
+		
+		menuHelp.add(helpMe);
 		
 		JMenuItem close = new JMenuItem("Close");
 		save.addActionListener(new ActionListener() {
@@ -71,8 +91,6 @@ public class GUI_MenuBar extends JMenuBar{
 	            public void actionPerformed(ActionEvent e) {
 	            	
 	            	JFileChooser fileChooser = new JFileChooser();
-	            	//ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-	                //fileChooser.setFileFilter(extFilter);;
 	                int returnValue = fileChooser.showOpenDialog(null);
 	                if (returnValue == JFileChooser.APPROVE_OPTION) {
 	                  File selectedFile = fileChooser.getSelectedFile();
@@ -157,6 +175,19 @@ public class GUI_MenuBar extends JMenuBar{
 				}
     			
     		});
+			
+			helpMe.addActionListener( new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					try { 
+				         String url = "https://giphy.com/gifs/programming-pxwVj2Sk5JlMA/fullscreen";
+				         Desktop.getDesktop().browse(URI.create(url));
+				       }
+				       catch (IOException e1) {
+				           System.out.println(e1.getMessage());
+				       }
+				}
+			});
 		
 		frame.setJMenuBar(menuBar);
 	}

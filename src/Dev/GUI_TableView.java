@@ -1,8 +1,6 @@
 package Dev;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,42 +10,53 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JViewport;
-import javax.swing.UIManager;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+
 
 import hsrt.mec.controldeveloper.core.com.ComHandler;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
+/**
+ * GUI_TableView
+ * Erzeugen der Tabelle, um Commands graphisch darstellen zu können. 
+ * Über die Tabelle können die Commands gelöscht, bearbeitet und verschoben werden.
+ *  
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
+@SuppressWarnings("serial")
 public class GUI_TableView extends JTable{
 	
-	private ControlModel cM = null;
 	private CustomTableModel cTM = null;
 	private JTable  table = new JTable();
-	private JScrollPane sP = new JScrollPane();
 	private JButton remove = new JButton("Remove");
 	private JButton up = new JButton("Up");
 	private JButton down = new JButton("Down");
 	private JButton stop = new JButton("Stop");
 	private JButton start = new JButton("Start");
 	
-
-	
+	/**
+	 * Konstruktor
+	 * @param cM (ControlModel)
+	 * @param frame (Frame)
+	 * @param cTM (CustomTableModel)
+	 */
 	public GUI_TableView(ControlModel cM, JFrame frame, CustomTableModel cTM) {
 		
 		createTableView(cM, frame, cTM);
 		
 	}
 	
+	/**
+	 * Erzeugen der TableView
+	 * @param cM (ControlModel)
+	 * @param frame (Frame)
+	 * @param cTM (CustomTableModel)
+	 */
 	private void createTableView(ControlModel cM, JFrame frame, CustomTableModel cTM) {
-		this.cM = cM;
 		this.cTM = cTM;
 		
 		this.setLayout(new BorderLayout());
@@ -60,7 +69,7 @@ public class GUI_TableView extends JTable{
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 2) {
 					String s = (String) table.getValueAt(table.getSelectedRow(), 1);
-					GUI_Dialogue dialogue = new GUI_Dialogue(s, table.getSelectedRow() + 1, 1);
+					new GUI_Dialogue(s, table.getSelectedRow() + 1, 1);
 
 				}
 			}

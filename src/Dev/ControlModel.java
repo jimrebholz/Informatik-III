@@ -39,19 +39,25 @@ public class ControlModel implements IComListener {
 
 	/**
 	 * Methode um den IOType Modus zu erfragen
-	 * @return ioType (Gear, Direction, Pause)
+	 * @return ioType (WiFi, Console, TextFile, ObjectFile)
 	 */
 	public void setIOType(IOType iOT) {
 		this.ioType = iOT;
 	}
 	
+	
+	/**
+	 * Methode um den IOType Modus zu setzen
+	 * @return ioType (WiFi, Console, TextFile, ObjectFile)
+	 */
 	public IOType getIOType() {
 		return ioType;
 	}
 	
 	/**
-	 * Gibt CommandTyp Objekt zurück
-	 * @param name (Gear, Direction, Pause)
+	 * Gibt CommandTyp Objekte zurück
+	 * @param name (Name um gewünschtes Objekt zurück zu bekommen)
+	 * @return commandTypes (Array mit Gear, Direction, Pause)
 	 */
 	public CommandType getCommandTypes(String name) {
 		
@@ -67,8 +73,11 @@ public class ControlModel implements IComListener {
 		else 
 			return null;
 	}
-	
-public String[] getCommandTypes() {
+	/**
+	 * Gibt CommandTyp Objekte in einem String für GUI_Types zurück
+	 * @return str (String mit den jeweils vorhandenen CommndTypes)
+	 */
+	public String[] getCommandTypes() {
 		
 		String[] str = new String[3];
 		str[1] = "Gear";
@@ -78,7 +87,11 @@ public String[] getCommandTypes() {
 		return str ;
 	}
 	
-	
+	/**
+	 * Gibt CommandTyp Objekte zurück
+	 * @return instance (Gear, Direction, Pause)
+	 * 
+	 */
 	public static ControlModel getInstance() {
 		
 		if(instance == null) 
@@ -88,6 +101,9 @@ public String[] getCommandTypes() {
 		
 	}
 	
+	/**
+	 * Ruft die createClass Methode aus CommandType aus, um die 3 gewünschten CommandType-Objekte zu erzeugen 
+	 */
 	public void createCommandTypes() {
 		
 		commandTypes [0] = CommandType.createClass("Direction");
@@ -96,17 +112,27 @@ public String[] getCommandTypes() {
 		
 	}
 
-
+	/**
+	 * Gibt die verkette Liste zurück
+	 * @return controlProcess (Referenzvariable der verketteten Liste)
+	 */
 	public CommandList getControlProcess() {
 		return controlProcess;
 	}
 
-
+	/**
+	 * Setzen der verketteten Liste
+	 * @param controlProcess (Referenzvariable der verketteten Liste)
+	 */
 	public void setControlProcess(CommandList controlProcess) {
 		this.controlProcess = controlProcess;
 	}
 	
-	
+	/**
+	 * Methode zum Laden der Daten aus einer Datei in die Liste
+	 * @param file (Datei aus die Daten eingelesen werden)
+	 * @return (Erfolgreiche Ausführung ja/ nein)
+	 */
 	public boolean load(File file) {
 		
 		TextFile txt = new TextFile(file, false);
@@ -150,6 +176,11 @@ public String[] getCommandTypes() {
 		return true;
 	}
 	
+	/**
+	 * Methode zum Speichern der Daten in eine Datei aus der Liste
+	 * @param file (Datei aus die Daten eingelesen werden)
+	 * @param append (Auswahl, ob Datei überschrieben wird -> false, wenn überschreiben
+	 */
 	public boolean save(File file, boolean append) {
 		
 		TextFile txt = new TextFile(file, append);
@@ -166,8 +197,7 @@ public String[] getCommandTypes() {
 		
 		return true;
 	}
-
-
+	
 	@Override
 	public void commandPerformed(ICommand arg0) {
 		

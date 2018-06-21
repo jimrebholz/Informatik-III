@@ -6,26 +6,44 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 
+/**
+ * GUI_Dialogue
+ * Erzeugen des Dialogfensters zum Bearbeiten der Commands
+ *  
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
 public class GUI_Dialogue{
 	
+	/**
+	 * Konstruktor
+	 * 
+	 * @param value (Gear Value, Direction/Gear/Pause)
+	 * @param row (Übergabe der ausgewählten Zeile der TableView)
+	 * @param mode (Modus für Cancel Button 1-> Cancel kein Löschen der Zeile)
+	 */
 	GUI_Dialogue(String value, int row, int mode) {
 	
 		createDialogue(value, row, mode);
 		
 	}
 	
+	/**
+	 * Erzeugen des Dialogs
+	 *
+	 * @param value (Gear Value, Direction/Gear/Pause)
+	 * @param row (Übergabe der ausgewählten Zeile der TableView)
+	 * @param mode (Modus für Cancel Button 1-> Cancel kein Löschen der Zeile)
+	 */
 	private void createDialogue(String value, int row, int mode) {
 		
 		JFrame dialogue = new JFrame(value);

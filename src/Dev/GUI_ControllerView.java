@@ -22,24 +22,35 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+/**
+ * GUI_ControllerView
+ * Erzeugen der einzelnen Komponenten für den Frame
+ *  
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
+
 @SuppressWarnings({ "unused", "serial" })
 public class GUI_ControllerView extends JFrame{
 
 	private ControlModel cM = null;
-	private JTextField input = new JTextField(20);
-	private JButton button = new JButton("Hinzufügen");
-	private JTextField output = new JTextField(400);
 	
-	private JTextField textField1;
-	private JTextField textField2;
 	
+	/**
+	 * Konstruktor
+	 * @param cM (Übergabe des ControlModels)
+	 */
 	public GUI_ControllerView(ControlModel cM) {
 		
 		super("Control-Developer");
 		createControllerView(cM);
 	  
 	}
-	
+	/**
+	 * Erzeugen der ControllerView
+	 * @param cM (Übergabe des ConrolModels)
+	 */
 	private void createControllerView(ControlModel cM) {
 		
 		this.cM = cM;
@@ -58,17 +69,12 @@ public class GUI_ControllerView extends JFrame{
 		this.add(types.getPanel(), BorderLayout.WEST);
 		
 		GUI_Console console = new GUI_Console();
-		this.add(console.getPanel(), BorderLayout.SOUTH);
+		this.add(console.nichtz(), BorderLayout.SOUTH);
 	
 		GUI_TableView list = new GUI_TableView(cM, this, cTM);
 		this.add(list.getPanel(), BorderLayout.CENTER);
 		
 		this.setResizable(false);
-
-		
-		//JPanel panelList = new JPanel(new BorderLayout());
-		//this.add(pane);
-		
 	}
 }
 
