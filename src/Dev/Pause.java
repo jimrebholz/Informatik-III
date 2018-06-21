@@ -25,10 +25,10 @@ public class Pause extends Command implements IPause {
 		super("Pause");
 
 		if (duration < 0)
-			this.duration = 0;
+			this.duration = 0.0;
 
 		else if (duration > 60)
-			this.duration = 60;
+			this.duration = 60.0;
 
 		else
 			this.duration = duration;

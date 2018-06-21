@@ -12,7 +12,6 @@ import java.awt.LayoutManager;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.ParallelGroup;
 
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,7 +27,7 @@ public class GUI_ControllerView extends JFrame{
 
 	private ControlModel cM = null;
 	private JTextField input = new JTextField(20);
-	private JButton button = new JButton("Add");
+	private JButton button = new JButton("Hinzufügen");
 	private JTextField output = new JTextField(400);
 	
 	private JTextField textField1;
@@ -38,35 +37,28 @@ public class GUI_ControllerView extends JFrame{
 		
 		super("Control-Developer");
 		this.cM = cM;
-		this.setSize(600,400);
 		this.setLayout(new BorderLayout());
-		this.setMinimumSize(new Dimension(500, 300));
+		this.setSize(new Dimension(600, 500));
 		this.setTitle("Control Devloper");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 	
+		CustomTableModel cTM = new CustomTableModel();
 		
-		GUI_MenuBar menu = new GUI_MenuBar(this);
+		GUI_MenuBar menu = new GUI_MenuBar(this, cTM);
 		this.add(menu, BorderLayout.NORTH);
 		
-		GUI_Types types = new GUI_Types(cM, this);
-		//this.add(types, BorderLayout.WEST);
-		JScrollPane scrollPane = new JScrollPane();
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		GUI_Types types = new GUI_Types(cM, this, cTM);
+		this.add(types.getPanel(), BorderLayout.WEST);
 		
-		this.add(scrollPane, BorderLayout.WEST);
+		GUI_Console console = new GUI_Console();
+		this.add(console.getPanel(), BorderLayout.SOUTH);
+	
+		GUI_TableView list = new GUI_TableView(cM, this, cTM);
+		this.add(list.getPanel(), BorderLayout.CENTER);
 		
-		/*JPanel pane = new JPanel();
-		pane.add(types, BorderLayout.CENTER);
-		
-		JPanel pane2 = new JPanel(new FlowLayout());
-		pane2.add(button);
-		pane.add(pane2, BorderLayout.SOUTH);
-		
-		this.add(pane, BorderLayout.WEST);
-		*/
-		this.revalidate();
-		this.repaint();
+		this.setResizable(false);
+
 		
 		//JPanel panelList = new JPanel(new BorderLayout());
 		//this.add(pane);

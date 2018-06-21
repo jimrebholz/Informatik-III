@@ -24,8 +24,10 @@ public class ControlDeveloper {
 	public static void main(String[] args){
 
 		ControlDeveloper cD = new ControlDeveloper();
+		
+		ControlModel.getInstance().commandPerformed(new Direction());
 
-		cD.testCommands();
+		/*cD.testCommands();
 
 		CommandList commandList = new CommandList();
 
@@ -50,18 +52,14 @@ public class ControlDeveloper {
 		newCommand.setDuration(2);
 		controlProcess.add(newCommand);
 	
-	
+		*/
 		//ControlModel.getInstance().save(ControlModel.file, false);
 		//ControlModel.getInstance().load(ControlModel.file);
 		
 		///////////////////////////////////////////////////////////////////////////////
 
 		GUI_ControllerView cV = new GUI_ControllerView(ControlModel.getInstance());
-		cV.pack();
 		cV.setVisible(true);
-	
-		
-		
 		
 		
 	}

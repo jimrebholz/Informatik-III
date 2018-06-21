@@ -91,11 +91,15 @@ public class CommandList {
 		// Kein Element in der Liste
 		if (root == null)
 			return false;
+		
+		if (number <= 0)
+			return false;
 
 		// Erstes Element soll gelöscht werden
 		else if (number == 1) {
 			root = root.next;
-			root.prev = null;
+			if (root != null)
+				root.prev = null;
 			elementCounter--;
 			return true;
 		}
@@ -231,10 +235,14 @@ public class CommandList {
 		else if (number == 1) {
 
 			remove(1);
-			elementCounter++;
+			
+			if(root.next == null) {
+				add(element.getElement());
+				return true;
+			}
 
 			Element tmp = root.next;
-
+			elementCounter++;
 			root.next = element;
 			element.prev = root;
 			tmp.prev = element;
@@ -253,7 +261,7 @@ public class CommandList {
 			return true;
 		}
 
-		// Irgendein Element wird nach hinten verschoben
+		// Irgendein Element wird nach unten verschoben
 		Element tmp = element.next;
 		Element tmp1 = element.next.next;
 

@@ -3,23 +3,36 @@ package Dev;
 import java.io.File;
 import java.util.Vector;
 
+import hsrt.mec.controldeveloper.core.com.ComHandler;
+import hsrt.mec.controldeveloper.core.com.IComListener;
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
 import hsrt.mec.controldeveloper.io.Console;
+import hsrt.mec.controldeveloper.io.IOType;
 import hsrt.mec.controldeveloper.io.TextFile;
 
-public class ControlModel {
+public class ControlModel implements IComListener {
 
 	private static ControlModel instance = null;
 	private CommandType [] commandTypes = new CommandType[3];
 	private CommandList controlProcess = null;
 	private final String SEPERATOR = ";"; 
-	static File file = new File("//Users//jimrebholz//Desktop//test.txt");	
+	private IOType ioType = null;
+	//static File file = new File("//Users//jimrebholz//Desktop//test.txt");	
 	
 	
 	private ControlModel() {
 		setControlProcess(new CommandList()); 
 		createCommandTypes();
+		ComHandler.getInstance().register(this);
 	}
 
+	public void setIOType(IOType iOT) {
+		this.ioType = iOT;
+	}
+	
+	public IOType getIOType() {
+		return ioType;
+	}
 	
 	public CommandType getCommandTypes(String name) {
 		
@@ -39,13 +52,11 @@ public class ControlModel {
 public String[] getCommandTypes() {
 		
 		String[] str = new String[3];
-		str[0] = "Gear";
-		str[1] = "Pause";
-		str[2] = "Direction";
-	
-	
+		str[1] = "Gear";
+		str[2] = "Pause";
+		str[0] = "Direction";
+
 		return str ;
-		
 	}
 	
 	
@@ -135,6 +146,26 @@ public String[] getCommandTypes() {
 		cmd.write(data);
 		
 		return true;
+	}
+
+
+	@Override
+	public void commandPerformed(ICommand arg0) {
+		
+		String s = arg0.getName();
+		
+		if(s.equals("Direction")) {
+			GUI_Console.console.setText(" Processing Command:\n > " + ((Direction) arg0).getDegree() + " Degree...");
+		}
+		else if(s.equals("Gear")) {
+			GUI_Console.console.setText(" Processing Command:\n > " + s + ((Gear) arg0).getSpeed() 
+										+ " cm/sec " + ((Gear) arg0).getDuration() + " sec");
+		}
+		
+		else if(s.equals("Pause")) {
+			GUI_Console.console.setText(" Processing Command:\n > " + s + ((Pause) arg0).getDuration() + " sec...");
+		}
+		
 	}
 	
 }
