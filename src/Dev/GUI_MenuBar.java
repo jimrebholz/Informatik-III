@@ -29,6 +29,12 @@ public class GUI_MenuBar extends JMenuBar{
 	
 	public GUI_MenuBar(JFrame frame, CustomTableModel cTM) {
 		
+		createMenuBar(frame, cTM);
+		
+	}
+	
+	private void createMenuBar(JFrame frame, CustomTableModel cTM) {
+		
 		//Erstellen einer Menüleiste
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -153,7 +159,6 @@ public class GUI_MenuBar extends JMenuBar{
     		});
 		
 		frame.setJMenuBar(menuBar);
-		
 	}
 	
    

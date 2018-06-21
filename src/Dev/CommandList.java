@@ -3,9 +3,9 @@ package Dev;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 /**
- *  CommandList -
- *  Implementierung einer Verkette Liste mit Methoden zum hinzufuegen, loeschen, anzeigen, 
- *  nach oben schieben, nach unten schieben.
+ * CommandList 
+ * Implementierung einer Verkette Liste mit Methoden zum hinzufuegen, loeschen, anzeigen, 
+ * nach oben schieben, nach unten schieben.
  *  
  * @author Marco Arena, Jim Rebholz
  * 

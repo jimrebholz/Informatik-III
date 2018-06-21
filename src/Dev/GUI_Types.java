@@ -29,6 +29,12 @@ public class GUI_Types extends JList {
 
 	
 	public GUI_Types(ControlModel cM, JFrame frame, CustomTableModel cTM) {
+		
+		createTypes(cM, frame, cTM);
+	}
+	
+	private void createTypes(ControlModel cM, JFrame frame, CustomTableModel cTM) {
+		
 		this.cM = cM;
 		
 		JLabel label = new JLabel("Types", JLabel.CENTER);
@@ -53,10 +59,14 @@ public class GUI_Types extends JList {
 				
 				add.setEnabled(true);  
 				if(e.getClickCount() == 2) {
-					new GUI_Dialogue(list.getSelectedValue(), list.getSelectedIndex() + 1);
-					add.setEnabled(false);
 					
 					cTM.addRow(list.getSelectedValue());
+					new GUI_Dialogue(list.getSelectedValue(), ControlModel.getInstance().getControlProcess().count(), 0);
+					System.out.println(list.getSelectedIndex()+1);
+					add.setEnabled(false);
+					
+					
+					
 				}
 
 			}
@@ -68,17 +78,17 @@ public class GUI_Types extends JList {
 			public void actionPerformed (ActionEvent aE){
 		    
 				if(aE.getSource() == add) {
-				
-					new GUI_Dialogue(list.getSelectedValue(), list.getSelectedIndex() + 1);
-					add.setEnabled(false);
 					
 					cTM.addRow(list.getSelectedValue());
+				
+					new GUI_Dialogue(list.getSelectedValue(), ControlModel.getInstance().getControlProcess().count(), 0);
+					add.setEnabled(false);
+					
 				}	
 			
 			} 
 		
 		});
-		
 	}
 	
 	

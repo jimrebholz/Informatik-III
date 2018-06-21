@@ -36,6 +36,12 @@ public class GUI_ControllerView extends JFrame{
 	public GUI_ControllerView(ControlModel cM) {
 		
 		super("Control-Developer");
+		createControllerView(cM);
+	  
+	}
+	
+	private void createControllerView(ControlModel cM) {
+		
 		this.cM = cM;
 		this.setLayout(new BorderLayout());
 		this.setSize(new Dimension(600, 500));
@@ -63,7 +69,6 @@ public class GUI_ControllerView extends JFrame{
 		//JPanel panelList = new JPanel(new BorderLayout());
 		//this.add(pane);
 		
-	  
 	}
 }
 

@@ -7,8 +7,7 @@ import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 /**
  * Control Developer
- * 	Erzeugen von Test Commands
- * 	Test der verketteten Liste
+ * Erzeugen der ControllerView Benutzeroberfläche
  *  
  * @author Marco Arena, Jim Rebholz
  * 
@@ -24,8 +23,13 @@ public class ControlDeveloper {
 	public static void main(String[] args){
 
 		ControlDeveloper cD = new ControlDeveloper();
+		GUI_ControllerView cV = new GUI_ControllerView(ControlModel.getInstance());
+		cV.setVisible(true);
 		
-		ControlModel.getInstance().commandPerformed(new Direction());
+		
+		///////////////////////////////////////////////////////////////////////////
+		
+		//ControlModel.getInstance().commandPerformed(new Direction());
 
 		/*cD.testCommands();
 
@@ -57,10 +61,6 @@ public class ControlDeveloper {
 		//ControlModel.getInstance().load(ControlModel.file);
 		
 		///////////////////////////////////////////////////////////////////////////////
-
-		GUI_ControllerView cV = new GUI_ControllerView(ControlModel.getInstance());
-		cV.setVisible(true);
-		
 		
 	}
 

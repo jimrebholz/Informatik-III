@@ -14,12 +14,17 @@ public class GUI_Console{
 	
 	public GUI_Console() {
 		
+		createConsole();
+		
+	}
+	
+	private void createConsole() {
+		
 		console.setPreferredSize(new Dimension(700, 100));
 		console.setEditable(false);
 		
 		console.setBorder(BorderFactory.createTitledBorder("Console"));
 	}
-	
 	public JTextArea getPanel() {
 	
 		return console;

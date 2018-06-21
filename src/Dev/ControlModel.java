@@ -10,6 +10,15 @@ import hsrt.mec.controldeveloper.io.Console;
 import hsrt.mec.controldeveloper.io.IOType;
 import hsrt.mec.controldeveloper.io.TextFile;
 
+/**
+ * ControlModel
+ * Zentralverwaltung der Liste und CommandTypes mit zusätzlichen Methoden zum Laden und Speichern von Daten
+ *  
+ * @author Marco Arena, Jim Rebholz
+ * 
+ * @version 1.0
+ */
+
 public class ControlModel implements IComListener {
 
 	private static ControlModel instance = null;
@@ -19,13 +28,19 @@ public class ControlModel implements IComListener {
 	private IOType ioType = null;
 	//static File file = new File("//Users//jimrebholz//Desktop//test.txt");	
 	
-	
+	/**
+	 * Privater Konstruktor (Singleton)
+	 */
 	private ControlModel() {
 		setControlProcess(new CommandList()); 
 		createCommandTypes();
 		ComHandler.getInstance().register(this);
 	}
 
+	/**
+	 * Methode um den IOType Modus zu erfragen
+	 * @return ioType (Gear, Direction, Pause)
+	 */
 	public void setIOType(IOType iOT) {
 		this.ioType = iOT;
 	}
@@ -34,6 +49,10 @@ public class ControlModel implements IComListener {
 		return ioType;
 	}
 	
+	/**
+	 * Gibt CommandTyp Objekt zurück
+	 * @param name (Gear, Direction, Pause)
+	 */
 	public CommandType getCommandTypes(String name) {
 		
 		if(name == "Gear")

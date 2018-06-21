@@ -3,8 +3,8 @@ package Dev;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 /**
- *  Command -
- *  Oberklasse der Command Befehle, implementiert Interface ICommand aus ControlDeveloper
+ * Command 
+ * Oberklasse der Command Befehle, implementiert Interface ICommand aus ControlDeveloper
  *  
  * @author Marco Arena, Jim Rebholz
  * 

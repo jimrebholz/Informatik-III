@@ -41,6 +41,12 @@ public class GUI_TableView extends JTable{
 
 	
 	public GUI_TableView(ControlModel cM, JFrame frame, CustomTableModel cTM) {
+		
+		createTableView(cM, frame, cTM);
+		
+	}
+	
+	private void createTableView(ControlModel cM, JFrame frame, CustomTableModel cTM) {
 		this.cM = cM;
 		this.cTM = cTM;
 		
@@ -54,7 +60,7 @@ public class GUI_TableView extends JTable{
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 2) {
 					String s = (String) table.getValueAt(table.getSelectedRow(), 1);
-					GUI_Dialogue dialogue = new GUI_Dialogue(s, table.getSelectedRow() + 1);
+					GUI_Dialogue dialogue = new GUI_Dialogue(s, table.getSelectedRow() + 1, 1);
 
 				}
 			}

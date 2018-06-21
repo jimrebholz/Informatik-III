@@ -20,7 +20,13 @@ import javax.swing.border.TitledBorder;
 
 public class GUI_Dialogue{
 	
-	GUI_Dialogue(String value, int row) {
+	GUI_Dialogue(String value, int row, int mode) {
+	
+		createDialogue(value, row, mode);
+		
+	}
+	
+	private void createDialogue(String value, int row, int mode) {
 		
 		JFrame dialogue = new JFrame(value);
 		dialogue.setLayout(new BorderLayout());
@@ -41,6 +47,8 @@ public class GUI_Dialogue{
 			JLabel degree = new JLabel(" Degree: ");
 			JTextField degreeText = new JTextField(10);
 			
+			degreeText.setText("0");
+			
 			JPanel panelDegree = new JPanel(new FlowLayout());
 			panelDegree.add(degree);
 			panelDegree.add(degreeText);
@@ -60,14 +68,29 @@ public class GUI_Dialogue{
 		
 			dialogue.add(finalPanel);
 			
-			cancel.addActionListener(new ActionListener() {
-				
-				public void actionPerformed(ActionEvent aE) {
+			if (mode == 1) {
+				cancel.addActionListener(new ActionListener() {
 					
-					dialogue.dispose();
-				}
+					public void actionPerformed(ActionEvent aE) {
+			
+						dialogue.dispose();
+					}
+					
+				});
+			}
+			
+			else {
+				cancel.addActionListener(new ActionListener() {
 				
-			});
+					public void actionPerformed(ActionEvent aE) {
+					
+						CommandList controlProcess = ControlModel.getInstance().getControlProcess();
+						controlProcess.remove(row);
+						dialogue.dispose();
+					}
+				
+				});
+			}
 			
 			save.addActionListener(new ActionListener() {
 				
@@ -89,8 +112,12 @@ public class GUI_Dialogue{
 			JLabel speed = new JLabel(" Speed: ");
 			JTextField speedText = new JTextField(10);
 			
+			speedText.setText("0");
+			
 			JLabel duration = new JLabel(" Duration: ");
 			JTextField durationText = new JTextField(10);
+			
+			durationText.setText("0");
 			
 			JPanel panelSpeed = new JPanel(new BorderLayout());
 			panelSpeed.add(speed, BorderLayout.WEST);
@@ -119,15 +146,29 @@ public class GUI_Dialogue{
 		
 			dialogue.add(finalPanel);
 			
-			cancel.addActionListener(new ActionListener() {
-				
-				public void actionPerformed(ActionEvent e) {
+			if (mode == 1) {
+				cancel.addActionListener(new ActionListener() {
 					
-					dialogue.dispose();
-				}
-				
-			});
+					public void actionPerformed(ActionEvent aE) {
 			
+						dialogue.dispose();
+					}
+					
+				});
+			}
+			
+			else {
+				cancel.addActionListener(new ActionListener() {
+				
+					public void actionPerformed(ActionEvent e) {
+					
+						CommandList controlProcess = ControlModel.getInstance().getControlProcess();
+						controlProcess.remove(row);
+						dialogue.dispose();
+					}
+				
+				});
+			}
 			save.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
@@ -152,6 +193,8 @@ public class GUI_Dialogue{
 			JLabel duration = new JLabel(" Duration: ");
 			JTextField durationText = new JTextField(10);
 			
+			durationText.setText("0");
+			
 			JPanel panelDegree = new JPanel(new FlowLayout());
 			panelDegree.add(duration);
 			panelDegree.add(durationText);
@@ -171,16 +214,32 @@ public class GUI_Dialogue{
 		
 			dialogue.add(finalPanel);
 			
-			cancel.addActionListener(new ActionListener () {
-				
-				public void actionPerformed(ActionEvent e) {
+			if (mode == 1) {
+				cancel.addActionListener(new ActionListener() {
 					
-					dialogue.dispose();
-					
-				} 
-				
-			});
+					public void actionPerformed(ActionEvent aE) {
 			
+						dialogue.dispose();
+					}
+					
+				});
+			}
+			
+			else {
+			
+				cancel.addActionListener(new ActionListener () {
+				
+					public void actionPerformed(ActionEvent e) {
+					
+						CommandList controlProcess = ControlModel.getInstance().getControlProcess();
+						controlProcess.remove(row);
+						dialogue.dispose();
+					
+					} 
+				
+				});
+			
+			}
 			save.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
@@ -198,4 +257,5 @@ public class GUI_Dialogue{
 			
 	}
 
+	
 }
